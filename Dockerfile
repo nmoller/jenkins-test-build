@@ -1,3 +1,5 @@
 FROM alpine/git AS base
 
-RUN printenv
+ARG SSH_KEY
+
+RUN echo ${SSH_KEY}
