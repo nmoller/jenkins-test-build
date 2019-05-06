@@ -2,7 +2,7 @@ FROM nmolleruq/builder:0.0.1 AS base
 
 COPY . /home/uqamena/
 
-RUN ls -altr /home/uqamena/
+RUN ls -altr /home/uqamena/.ssh && whoami
 
 RUN git clone git@bitbucket.org:uqam/appbuilder.git test01
 
