@@ -1,8 +1,12 @@
 FROM nmolleruq/builder:0.0.1 AS base
 
+# Attention la variable qui determine où sera le build est dans le 
+# config/....json
 ENV build_root=build/moodle/
 
 USER root
+
+WORKDIR /opt/
 
 COPY . /root/
 
@@ -19,4 +23,8 @@ RUN rm -rf ${build_root}.git && rm -f {build_root}behat.yml.dist {build_root}TRA
    {build_root}.csslintrc {build_root}config-dist.php \
    {build_root}phpunit.xml.dist {build_root}package.json {build_root}npm-shrinkwrap.json 
 
-RUN du -sh ${build_root}
+RUN du -sh /opt/${build_root} && ls -altr /opt/${build_root}
+
+
+#FROM nmoller/..... 
+#COPY --from=base /opt/build/moodle /var/www/html
