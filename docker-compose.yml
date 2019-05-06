@@ -1,6 +1,6 @@
 webserver:
   # changer la version selon le no du build
- image: nmolleruq/moouqamtest:0.0.29  
+ image: nmolleruq/moouqamtest:0.0.30  
 
  environment:
    MDL_DBTYPE: mysqli
@@ -21,10 +21,14 @@ webserver:
    - "8180:80"
 
 mysqlserver:
-    image: mysql:5.6
+    image: heathrow/mysql:5.7 #mysql:5.6
+    # Besoin de plus de paramètres
     environment:
       MYSQL_DATABASE: coursv3
       MYSQL_ROOT_PASSWORD: root
+      MYSQL_CHARSET: utf8mb4 
+      MYSQL_COLLATION: utf8mb4_general_ci 
+      MYSQL_INNODB_LARGE_PREFIX: 1
   
 memsession:
   image: memcached
