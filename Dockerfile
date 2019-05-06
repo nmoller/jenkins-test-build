@@ -1,8 +1,8 @@
 FROM nmolleruq/builder:0.0.1 AS base
 
-COPY . /home/uqamena/
+USER root
 
-RUN ls -altr /home/uqamena/.ssh && whoami && chmod 600  /home/uqamena/.ssh/test
+COPY . /home/uqamena/
 
 RUN git clone git@bitbucket.org:uqam/appbuilder.git test01
 
