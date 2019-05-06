@@ -1,0 +1,30 @@
+webserver:
+  # changer la version selon le no du build
+ image: nmolleruq/moouqamtest:0.0.28  
+
+ environment:
+   MDL_DBTYPE: mysqli
+   MDL_DBHOST: mysqlserver
+   MDL_DBNAME: coursv3
+   MDL_DBUSER: root
+   MDL_DBPASS: root
+   MDL_WWWROOT: 'http://localhost:8180'
+   MDL_MEMSESSION: memsession
+   MDL_DATAROOT: '/var/www/moodledata'
+   MDL_LOCALCACHEDIR: '/tmp'
+
+ links:
+   - mysqlserver
+   - memsession
+
+ ports:
+   - "8180:80"
+
+mysqlserver:
+    image: mysql:5.6
+    environment:
+      MYSQL_DATABASE: coursv3
+      MYSQL_ROOT_PASSWORD: root
+  
+memsession:
+  image: memcached
