@@ -13,7 +13,11 @@ COPY . /root/
 # On pourrait travailler avec des branches différentes et la passer par ENV comme paramètre.
 RUN git clone --depth 1 git@bitbucket.org:uqam/appbuilder.git test01
 
-RUN php test01/bin/builder.php gitStuff -r -l -k test01/config/MM-535.json
+# Moodle 3.0
+# RUN php test01/bin/builder.php gitStuff -r -l -k test01/config/MM-535.json
+
+#Moodle 3.5
+RUN php test01/bin/builder.php gitStuff -r -l -k test01/config/hackaton.json
 
 # Nettoyage
 RUN rm -rf ${build_root}.git && rm -f {build_root}behat.yml.dist {build_root}TRADEMARK.txt \
@@ -31,7 +35,7 @@ RUN git clone --depth 1 -b UQAM_30_k8s --single-branch git@bitbucket.org:uqam/co
 
 # Prendre comme base https://github.com/moodlehq/moodle-php-apache
 # Version 3.0 ne fonctionne pas...
-# FROM moodlehq/moodle-php-apache:7.1
-FROM nmolleruq/mdlhb-cecl:p1.4-dev
+FROM moodlehq/moodle-php-apache:7.1
+#FROM nmolleruq/mdlhb-cecl:p1.4-dev
 COPY --from=base /opt/build/moodle /var/www/html
 COPY --from=base /opt/moodleconfig/config.php /var/www/html/config.php
