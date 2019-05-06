@@ -29,6 +29,8 @@ RUN du -sh /opt/${build_root} && ls -altr /opt/${build_root}
 RUN git clone --depth 1 -b UQAM_30_k8s --single-branch git@bitbucket.org:uqam/configphp.git moodleconfig
 
 
-#FROM nmoller/..... 
-#COPY --from=base /opt/build/moodle /var/www/html
-#COPY --from=base /opt/moodleconfig /var/www/html/config.php
+# Prendre comme base https://github.com/moodlehq/moodle-php-apache
+#FROM nmolleruq/..... 
+FROM moodlehq/moodle-php-apache:7.2
+COPY --from=base /opt/build/moodle /var/www/html
+COPY --from=base /opt/moodleconfig/config.php /var/www/html/config.php
