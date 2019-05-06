@@ -10,7 +10,8 @@ WORKDIR /opt/
 
 COPY . /root/
 
-RUN git clone git@bitbucket.org:uqam/appbuilder.git test01
+# On pourrait travailler avec des branches différentes et la passer par ENV comme paramètre.
+RUN git clone --depth 1 git@bitbucket.org:uqam/appbuilder.git test01
 
 RUN php test01/bin/builder.php gitStuff -r -l -k test01/config/MM-535.json
 
@@ -25,6 +26,9 @@ RUN rm -rf ${build_root}.git && rm -f {build_root}behat.yml.dist {build_root}TRA
 
 RUN du -sh /opt/${build_root} && ls -altr /opt/${build_root}
 
+RUN git clone --depth 1 -b UQAM_30_k8s --single-branch git@bitbucket.org:uqam/configphp.git moodleconfig
+
 
 #FROM nmoller/..... 
 #COPY --from=base /opt/build/moodle /var/www/html
+#COPY --from=base /opt/moodleconfig /var/www/html/config.php
