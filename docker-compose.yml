@@ -1,6 +1,6 @@
 webserver:
   # changer la version selon le no du build
- image: nmolleruq/moouqamtest:0.0.28  
+ image: nmolleruq/moouqamtest:0.0.29  
 
  environment:
    MDL_DBTYPE: mysqli
@@ -11,7 +11,7 @@ webserver:
    MDL_WWWROOT: 'http://localhost:8180'
    MDL_MEMSESSION: memsession
    MDL_DATAROOT: '/var/www/moodledata'
-   MDL_LOCALCACHEDIR: '/tmp'
+   MDL_LOCALCACHEDIR: '/tmp/moodle'
 
  links:
    - mysqlserver
