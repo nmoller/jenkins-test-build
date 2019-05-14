@@ -23,7 +23,7 @@ docker exec -it test01_webserver_1 sed -i -e "s#\$CFG->sslproxy = true;##" /var/
 # nouvelle installation
 docker exec -it -u 600:600 \ 
 test01_webserver_1 \
-php /var/www/htmladmin/cli/install_database.php --adminpass=s3cr3t --agree-license
+php /var/www/html/admin/cli/install_database.php --adminpass=s3cr3t --agree-license
 
 ```
 
@@ -46,7 +46,7 @@ docker exec -it test01_webserver_1 sed -i -e "s#\$CFG->sslproxy = true;##" /var/
 # nouvelle installation
 docker exec -it -u 33:33 \ 
 test01_webserver_1 \
-php /var/www/htmladmin/cli/install_database.php --adminpass=s3cr3t --agree-license
+php /var/www/html/admin/cli/install_database.php --adminpass=s3cr3t --agree-license
 ```
 
 ## Extras
