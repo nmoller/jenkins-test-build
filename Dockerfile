@@ -30,7 +30,8 @@ RUN rm -rf ${build_root}.git && rm -f {build_root}behat.yml.dist {build_root}TRA
    {build_root}.csslintrc {build_root}config-dist.php \
    {build_root}phpunit.xml.dist {build_root}package.json {build_root}npm-shrinkwrap.json 
 
-RUN du -sh /opt/${build_root} && ls -altr /opt/${build_root}
+# Pour voir la taille sur l'image.
+#RUN du -sh /opt/${build_root} && ls -altr /opt/${build_root}
 
 RUN git clone --depth 1 -b UQAM_30_k8s --single-branch git@bitbucket.org:uqam/configphp.git moodleconfig
 
