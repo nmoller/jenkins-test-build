@@ -14,5 +14,14 @@
 
 API_TOKEN=$1
 
+if [ -z "$2" ]
+then
+	BRANCH=master
+else
+	BRANCH=$2
+fi
+
 CRUMB=$(curl -s "https://moller_n:${API_TOKEN}@jenkins.dev.uqam.ca/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,\":\",//crumb)")
-curl -I -X POST https://moller_n:${API_TOKEN}@jenkins.dev.uqam.ca/view/ENA/job/ENA/job/Moodle-build-01/build -H "${CRUMB}"
+curl -I -X \
+POST https://moller_n:${API_TOKEN}@jenkins.dev.uqam.ca/view/ENA/job/ENA/job/Moodle-build-01/buildWithParameters?branch=${BRANCH} \
+-H "${CRUMB}"

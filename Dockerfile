@@ -3,6 +3,8 @@ FROM nmolleruq/builder:0.0.1 AS base
 # Attention la variable qui determine où sera le build est dans le 
 # config/....json
 ENV build_root=build/moodle/
+# lu à partir des paramètres fournis par Jenkins
+ARG branch
 
 USER root
 
@@ -10,8 +12,8 @@ WORKDIR /opt/
 
 COPY . /root/
 
-# On pourrait travailler avec des branches différentes et la passer par ENV comme paramètre.
-RUN git clone --depth 1 git@bitbucket.org:uqam/appbuilder.git test01
+# On pourrait travailler avec des branches différentes et la passer par commande comme paramètre.
+RUN git clone --depth 1 -b $branch --single-branch git@bitbucket.org:uqam/appbuilder.git test01
 
 # Moodle 3.0
 # RUN php test01/bin/builder.php gitStuff -r -l -k test01/config/MM-535.json
