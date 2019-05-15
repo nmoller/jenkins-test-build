@@ -19,7 +19,7 @@ RUN git clone --depth 1 -b $branch --single-branch git@bitbucket.org:uqam/appbui
 # RUN php test01/bin/builder.php gitStuff -r -l -k test01/config/MM-535.json
 
 #Moodle 3.5
-RUN php test01/bin/builder.php gitStuff -r -l -k test01/config/hackaton.json
+RUN php test01/bin/builder.php gitStuff -r -l -k test01/config/build.json
 
 # Nettoyage
 RUN rm -rf ${build_root}.git && rm -f {build_root}behat.yml.dist {build_root}TRADEMARK.txt \

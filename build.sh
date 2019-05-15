@@ -16,7 +16,7 @@ API_TOKEN=$1
 
 if [ -z "$2" ]
 then
-	BRANCH=master
+	BRANCH="test-nm"
 else
 	BRANCH=$2
 fi
