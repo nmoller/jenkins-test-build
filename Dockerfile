@@ -39,7 +39,8 @@ RUN git clone --depth 1 -b UQAM_30_k8s --single-branch git@bitbucket.org:uqam/co
 # Prendre comme base https://github.com/moodlehq/moodle-php-apache
 # Version 3.0 ne fonctionne pas...
 #FROM moodlehq/moodle-php-apache:7.1
-FROM moodlehq/moodle-php-apache:7.0
+#FROM moodlehq/moodle-php-apache:7.0
+FROM moodlehq/moodle-php-apache:7.3
 #FROM nmolleruq/mdlhb-cecl:p1.4-dev
 COPY --from=base /opt/build/moodle /var/www/html
 COPY --from=base /opt/moodleconfig/config.php /var/www/html/config.php
