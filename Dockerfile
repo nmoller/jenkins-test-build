@@ -48,4 +48,9 @@ COPY --from=base /opt/moodleconfig/config.php /var/www/html/config.php
 RUN sed -i -e "s/post_max_size = 8M/post_max_size = 250M/g" /usr/local/etc/php/php.ini-production && \
     sed -i -e "s/upload_max_filesize = 2M/upload_max_filesize = 250M/g" /usr/local/etc/php/php.ini-production && \
     sed -i -e "s/memory_limit = 128M/memory_limit = 1024M/g" /usr/local/etc/php/php.ini-production && \
-    cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
+    cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini && \
+    #Set de locales
+    echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen && \
+    echo "fr_FR.UTF-8 UTF-8" >> /etc/locale.gen && \
+    echo "fr_CA.UTF-8 UTF-8" >> /etc/locale.gen && \
+    locale-gen
