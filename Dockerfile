@@ -46,5 +46,6 @@ COPY --from=base /opt/build/moodle /var/www/html
 COPY --from=base /opt/moodleconfig/config.php /var/www/html/config.php
 
 RUN sed -i -e "s/post_max_size = 8M/post_max_size = 250M/g" /usr/local/etc/php/php.ini-production && \
-    sed -i -e "s/upload_max_filesize = 2M/post_max_size = 250M/g" /usr/local/etc/php/php.ini-production && \
+    sed -i -e "s/upload_max_filesize = 2M/upload_max_filesize = 250M/g" /usr/local/etc/php/php.ini-production && \
+    sed -i -e "s/memory_limit = 128M/memory_limit = 1024M/g" /usr/local/etc/php/php.ini-production && \
     cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
