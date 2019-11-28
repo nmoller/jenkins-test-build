@@ -44,3 +44,7 @@ FROM moodlehq/moodle-php-apache:7.3
 #FROM nmolleruq/mdlhb-cecl:p1.4-dev
 COPY --from=base /opt/build/moodle /var/www/html
 COPY --from=base /opt/moodleconfig/config.php /var/www/html/config.php
+
+RUN sed -i -e "s/post_max_size = 8M/post_max_size = 250M/g" /usr/local/etc/php/php.ini-production &&
+    sed -i -e "s/upload_max_filesize = 2M/post_max_size = 250M/g" /usr/local/etc/php/php.ini-production &&
+    cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
