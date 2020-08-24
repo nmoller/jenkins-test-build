@@ -33,8 +33,8 @@ RUN rm -rf ${build_root}.git && rm -f {build_root}behat.yml.dist {build_root}TRA
 # Pour voir la taille sur l'image.
 #RUN du -sh /opt/${build_root} && ls -altr /opt/${build_root}
 
-#RUN git clone --depth 1 -b UQAM_30_k8s --single-branch git@bitbucket.org:uqam/configphp.git moodleconfig
-RUN git clone --depth 1 -b UQAM_30_AWS --single-branch git@bitbucket.org:uqam/configphp.git moodleconfig
+RUN git clone --depth 1 -b UQAM_30_k8s --single-branch git@bitbucket.org:uqam/configphp.git moodleconfig
+#RUN git clone --depth 1 -b UQAM_30_AWS --single-branch git@bitbucket.org:uqam/configphp.git moodleconfig
 
 # Prendre comme base https://github.com/moodlehq/moodle-php-apache
 # Version 3.0 ne fonctionne pas...
