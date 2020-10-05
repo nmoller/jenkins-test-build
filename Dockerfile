@@ -40,17 +40,24 @@ RUN git clone --depth 1 -b UQAM_30_k8s --single-branch git@bitbucket.org:uqam/co
 # Version 3.0 ne fonctionne pas...
 #FROM moodlehq/moodle-php-apache:7.1
 #FROM moodlehq/moodle-php-apache:7.0
-FROM moodlehq/moodle-php-apache:7.3
+# FROM moodlehq/moodle-php-apache:7.3
 #FROM nmolleruq/mdlhb-cecl:p1.4-dev
+# COPY --from=base /opt/build/moodle /var/www/html
+# COPY --from=base /opt/moodleconfig/config.php /var/www/html/config.php
+
+#RUN sed -i -e "s/post_max_size = 8M/post_max_size = 250M/g" /usr/local/etc/php/php.ini-production && \
+#    sed -i -e "s/upload_max_filesize = 2M/upload_max_filesize = 250M/g" /usr/local/etc/php/php.ini-production && \
+#    sed -i -e "s/memory_limit = 128M/memory_limit = 1024M/g" /usr/local/etc/php/php.ini-production && \
+#    cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini && \
+    #Set de locales
+#    echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen && \
+#    echo "fr_FR.UTF-8 UTF-8" >> /etc/locale.gen && \
+#    echo "fr_CA.UTF-8 UTF-8" >> /etc/locale.gen && \
+#    locale-gen
+
+########################################################
+# Cette image contient la configuration de ldap.conf et le certificat uqam
+# voir https://wiki.uqam.ca/x/ZpVVBQ
+FROM nmolleruq/moouqamtest:X.0.76
 COPY --from=base /opt/build/moodle /var/www/html
 COPY --from=base /opt/moodleconfig/config.php /var/www/html/config.php
-
-RUN sed -i -e "s/post_max_size = 8M/post_max_size = 250M/g" /usr/local/etc/php/php.ini-production && \
-    sed -i -e "s/upload_max_filesize = 2M/upload_max_filesize = 250M/g" /usr/local/etc/php/php.ini-production && \
-    sed -i -e "s/memory_limit = 128M/memory_limit = 1024M/g" /usr/local/etc/php/php.ini-production && \
-    cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini && \
-    #Set de locales
-    echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen && \
-    echo "fr_FR.UTF-8 UTF-8" >> /etc/locale.gen && \
-    echo "fr_CA.UTF-8 UTF-8" >> /etc/locale.gen && \
-    locale-gen
